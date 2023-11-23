@@ -32,12 +32,17 @@ public:
 
 	virtual void Clear() = 0;
 
+	virtual bool GetInError() = 0;
+
+	virtual string* GetEquationDisplay() = 0;
+	virtual string* GetCurrentTotalDisplay() = 0;
+
 protected:
 
 	/*******************************************************************
 	* Concat display to allow for any UI to display the numerical entries.
 	********************************************************************/
-	virtual void ConcatDisplay(const string& in, string& out) = 0;
+	virtual void ConcatDisplay(const string& in) = 0;
 
 private:
 
