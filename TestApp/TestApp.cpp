@@ -3,9 +3,31 @@
 
 #include <iostream>
 
+#include "StandardCalculator.h"
+
+using namespace CalculatorClasses;
+using std::cout;
+using std::endl;
+
 int main()
 {
-    std::cout << "Hello World!\n";
+    cout << "Hello World!\n";
+
+    StandardCalculator* calc = new StandardCalculator();
+
+
+    cout << "Calculating addition of 54.5 and 77.3!\n";
+    cout << calc->Add(54.5, 77.3) << endl;
+    cout << *calc->GetEquationDisplay() << endl;
+    cout << *calc->GetCurrentTotalDisplay() << endl;
+
+    if (calc != nullptr)
+    {
+        delete calc;
+        calc = nullptr;
+    }
+
+    return 0;
 }
 
 /*   
