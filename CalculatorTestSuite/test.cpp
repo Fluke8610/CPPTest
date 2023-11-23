@@ -2,16 +2,45 @@
 #include "StandardCalculator.h"
 
 using namespace CalculatorClasses;
+using namespace testing;
 
 namespace CalculatorTestSuite
 {
 
-	TEST(TestStandardCalculator, AddExpectedTrue) {
+	class StandardCalculatorTesting : public Test
+	{
 
-		StandardCalculator* calc = new StandardCalculator();
+	protected:
+		// Instantiate calculator
+		StandardCalculator* calc;
 
+		StandardCalculatorTesting() {}
+
+		virtual ~StandardCalculatorTesting() { }
+
+		virtual void SetUp()
+		{
+			calc = new StandardCalculator();
+		}
+
+		virtual void TearDown()
+		{
+			if (calc != nullptr)
+			{
+				delete calc;
+				calc = nullptr;
+			}
+		}
+	};
+
+
+	TEST_F(StandardCalculatorTesting, AddExpectedEqualInteger) 
+	{
 		EXPECT_EQ(calc->Add(1, 2), 3);
 	}
 
-
+	TEST_F(StandardCalculatorTesting, SubtractExpectedEqualInteger)
+	{
+		EXPECT_EQ(calc->Subtract(2, 1), 1);
+	}
 };

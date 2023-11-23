@@ -23,7 +23,7 @@ float StandardCalculator::Add(float num1, float num2)
 	}
 	catch (const std::exception& e)
 	{
-
+		// Ensure program doesn't crash, in full application we would raise flag here to say we had an issue.
 		return -1;
 	}
 }
@@ -40,7 +40,15 @@ void CalculatorClasses::StandardCalculator::ConcatDisplay(const string& in, stri
 
 float StandardCalculator::Subtract(float num1, float num2)
 {
-	return float();
+	try 
+	{
+		return num1 - num2;
+	}
+	catch (const std::exception& e)
+	{
+		// Ensure program doesn't crash, in full application we would raise flag here to say we had an issue.
+		return -1;
+	}
 }
 
 void StandardCalculator::Clear()
