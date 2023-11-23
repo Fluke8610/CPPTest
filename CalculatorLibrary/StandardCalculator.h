@@ -3,13 +3,10 @@
 
 #include "Calculator.h"
 
-//#include <map>
-//#include <vector>
+using std::string;
+
 namespace CalculatorClasses
 {
-
-
-
 	class StandardCalculator : public Calculator
 	{
 	
@@ -18,19 +15,21 @@ namespace CalculatorClasses
 		StandardCalculator();
 		virtual ~StandardCalculator() override;
 	
-		virtual float Add(float num1, float num2) override;
-		virtual float Subtract(float num1, float num2) override;
-		virtual float Divide(float num1, float num2) override;
-	
+		virtual float Add(const float num1, const float num2) override;
+		virtual float Subtract(const float num1, const float num2) override;
+		virtual float Divide(const float num1, const float num2) override;
+
 		virtual void Clear() override;
 	
 	protected:
 	
-	
-	
+		virtual void ConcatDisplay(const string& in, string& out) override;
+		
 	
 	private:
 	
+		string* display = nullptr;
+		double total = 0;
 		
 	};
 
