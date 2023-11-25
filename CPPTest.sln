@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestApp", "TestApp\TestApp.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CalculatorTestSuite", "CalculatorTestSuite\CalculatorTestSuite.vcxproj", "{59B8EAD6-5644-420F-ADFE-1CC6E73CA388}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CalculatorGUI", "CalculatorGUI\CalculatorGUI.vcxproj", "{5AACA184-DBF2-4E37-8F4E-3A258AB8A7CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{59B8EAD6-5644-420F-ADFE-1CC6E73CA388}.Release|x64.Build.0 = Release|x64
 		{59B8EAD6-5644-420F-ADFE-1CC6E73CA388}.Release|x86.ActiveCfg = Release|Win32
 		{59B8EAD6-5644-420F-ADFE-1CC6E73CA388}.Release|x86.Build.0 = Release|Win32
+		{5AACA184-DBF2-4E37-8F4E-3A258AB8A7CE}.Debug|x64.ActiveCfg = Debug|x64
+		{5AACA184-DBF2-4E37-8F4E-3A258AB8A7CE}.Debug|x64.Build.0 = Debug|x64
+		{5AACA184-DBF2-4E37-8F4E-3A258AB8A7CE}.Debug|x86.ActiveCfg = Debug|x64
+		{5AACA184-DBF2-4E37-8F4E-3A258AB8A7CE}.Debug|x86.Build.0 = Debug|x64
+		{5AACA184-DBF2-4E37-8F4E-3A258AB8A7CE}.Release|x64.ActiveCfg = Release|x64
+		{5AACA184-DBF2-4E37-8F4E-3A258AB8A7CE}.Release|x64.Build.0 = Release|x64
+		{5AACA184-DBF2-4E37-8F4E-3A258AB8A7CE}.Release|x86.ActiveCfg = Release|x64
+		{5AACA184-DBF2-4E37-8F4E-3A258AB8A7CE}.Release|x86.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
