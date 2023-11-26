@@ -36,7 +36,20 @@ float StandardCalculator::Add(float num1, float num2)
 
 float StandardCalculator::Add(const vector<int> numbers)
 {
-	return 0.0f;
+	
+	for (int num : numbers)
+	{
+		if (total == 0)
+		{
+			total = num;
+		}
+		else
+		{
+			total += num;
+		}
+	}
+
+	return total;
 }
 
 float StandardCalculator::Divide(float num1, float num2)
@@ -47,8 +60,7 @@ float StandardCalculator::Divide(float num1, float num2)
 	}
 	catch (const std::exception&)
 	{
-		// Introduce error enumeration (BYTE) for calculation errors e.g. Divide by 0.
-
+		// TODO: Introduce error enumeration (BYTE) for calculation errors e.g. Divide by 0.
 	}
 
 	return 0;
@@ -67,7 +79,6 @@ float StandardCalculator::Multiply(const float num1, const float num2)
 
 float StandardCalculator::Multiply(const vector<int> numbers)
 {
-	float total = 0;
 
 	for(int num : numbers)
 	{

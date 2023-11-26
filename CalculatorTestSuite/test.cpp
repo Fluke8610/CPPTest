@@ -49,6 +49,11 @@ namespace CalculatorTestSuite
 		EXPECT_EQ(calc->Subtract(2, 1), 1);
 	}
 
+	TEST_F(StandardCalculatorTesting, SubtractExpectedEqualMultipleInteger)
+	{
+		EXPECT_EQ(calc->Subtract(vector<int> { 500, 25, 22, 16, 94, 16, 21, 25 }), 281);
+	}
+
 	TEST_F(StandardCalculatorTesting, DivideExpectedEqualInteger)
 	{
 		EXPECT_EQ(calc->Divide(10, 2), 5);
