@@ -13,6 +13,7 @@
 #include <QLabel>
 #include <QButtonGroup>
 
+#define BTNADD          0
 #define BTNSUBTRACT     -1
 #define BTNDIVIDE       -2
 #define BTNMULTIPLY     -3
@@ -24,7 +25,7 @@
 CalculatorGUI::CalculatorGUI(QWidget *parent)
     : QMainWindow(parent)
 {
-    setFixedSize(QSize(250, 500));
+    setFixedSize(QSize(mWidth, mHeight));
 
     mCalculator = new StandardCalculator();
 
@@ -61,7 +62,7 @@ void CalculatorGUI::BuildView()
     QWidget* mainWidget = new QWidget(this);
     mainWidget->setLayout(mLayout);
     mainWidget->setContentsMargins(2, 2, 2, 2);
-    mainWidget->setMinimumSize(QSize(250, 500));
+    mainWidget->setMinimumSize(QSize(mWidth, mHeight));
     mainWidget->setObjectName(QString("MainWidget"));
 
     CreateMenu();
@@ -70,15 +71,18 @@ void CalculatorGUI::BuildView()
     * Main text Display for the calculator
     *********************************************/
     QLabel* mainTextDisplay = new QLabel(QString("0"), mainWidget);
-    mainTextDisplay->setMinimumWidth(200);
+    mainTextDisplay->setMinimumWidth(240);
+    mainTextDisplay->setMinimumHeight(20);
     mainTextDisplay->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
-    mainTextDisplay->setStyleSheet("QLabel { background-color: white; color: black; }");
+    mainTextDisplay->setStyleSheet("QLabel { background-color: white; color: black; border-radius: 5px; }");
     mainTextDisplay->setObjectName(QString("MainTextDisplayLabel"));
 
     QLabel* mainInputDisplay = new QLabel(QString(""), mainWidget);
-    mainInputDisplay->setMinimumWidth(200);
+    mainInputDisplay->setMinimumWidth(240);
+    mainInputDisplay->setMinimumHeight(60);
+    mainInputDisplay->setWordWrap(true);
     mainInputDisplay->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
-    mainInputDisplay->setStyleSheet("QLabel { background-color: white; color: black; }");
+    mainInputDisplay->setStyleSheet("QLabel { background-color: white; color: black; border-radius: 5px; }");
     mainInputDisplay->setObjectName(QString("mainInputDisplayLabel"));
 
     mKeypadLayout = new QGridLayout();
@@ -98,7 +102,7 @@ void CalculatorGUI::BuildView()
     mLayout->addWidget(mTabBar, 0, 0, 1, 5, Qt::AlignTop | Qt::AlignLeft);
     mLayout->addWidget(mainInputDisplay, 1, 0, 1, 5, Qt::AlignVCenter | Qt::AlignHCenter);
     mLayout->addWidget(mainTextDisplay, 2, 0, 1, 5, Qt::AlignVCenter | Qt::AlignHCenter);
-    mLayout->addWidget(keypadWidget, 3, 0, 4, 4, Qt::AlignVCenter | Qt::AlignHCenter);
+    mLayout->addWidget(keypadWidget, 3, 0, 4, 5, Qt::AlignVCenter | Qt::AlignHCenter);
 
     
 }
@@ -143,6 +147,7 @@ void CalculatorGUI::SetupKeypad()
     QWidget* keypad = findChild<QWidget*>(QString("KeypadWidget")); // Needed for parenting to a widget.
     QGridLayout* layout = findChild<QGridLayout*>(QString("KeypadGridLayout"));
 
+    // Declared in header file.
     mButtonGroup = new QButtonGroup(keypad);
 
     int rows = 3;
@@ -160,7 +165,7 @@ void CalculatorGUI::SetupKeypad()
         layout->addWidget(btnDecimalPoint, 3, 0, Qt::AlignHCenter | Qt::AlignVCenter);
 
         QPushButton* btnZero = new QPushButton(QString("0"), keypad);
-        btnZero->setFixedSize(QSize(60, 40));
+        btnZero->setFixedSize(QSize(mBtnWidth, mBtnHeight));
         btnZero->setObjectName(QString("BtnZero"));
 
         mButtonGroup->addButton(btnZero, BTNZERO);
@@ -168,12 +173,52 @@ void CalculatorGUI::SetupKeypad()
         layout->addWidget(btnZero, 3, 1, Qt::AlignHCenter | Qt::AlignVCenter);
 
         QPushButton* btnDelete = new QPushButton(QString("DEL"), keypad);
-        btnDelete->setFixedSize(QSize(60, 40));
+        btnDelete->setFixedSize(QSize(mBtnWidth, mBtnHeight));
         btnDelete->setObjectName(QString("BtnDelete"));
 
         mButtonGroup->addButton(btnDelete, BTNDELETE);
 
         layout->addWidget(btnDelete, 3, 2, Qt::AlignHCenter | Qt::AlignVCenter);
+
+        QPushButton* btnSubtract = new QPushButton(QString("-"), keypad);
+        btnSubtract->setFixedSize(QSize(mBtnWidth, mBtnHeight));
+        btnSubtract->setObjectName(QString("BtnSubtract"));
+
+        mButtonGroup->addButton(btnSubtract, BTNSUBTRACT);
+
+        layout->addWidget(btnSubtract, 0, 3, Qt::AlignHCenter | Qt::AlignVCenter);
+
+        QPushButton* btnDivide = new QPushButton(QString("/"), keypad);
+        btnDivide->setFixedSize(QSize(mBtnWidth, mBtnHeight));
+        btnDivide->setObjectName(QString("BtnDivide"));
+
+        mButtonGroup->addButton(btnDivide, BTNDIVIDE);
+
+        layout->addWidget(btnDivide, 1, 3, Qt::AlignHCenter | Qt::AlignVCenter);
+
+        QPushButton* btnMultiply = new QPushButton(QString("*"), keypad);
+        btnMultiply->setFixedSize(QSize(mBtnWidth, mBtnHeight));
+        btnMultiply->setObjectName(QString("BtnMultiply"));
+
+        mButtonGroup->addButton(btnMultiply, BTNMULTIPLY);
+
+        layout->addWidget(btnMultiply, 2, 3, Qt::AlignHCenter | Qt::AlignVCenter);
+
+        QPushButton* btnAdd = new QPushButton(QString("+"), keypad);
+        btnAdd->setFixedSize(QSize(mBtnWidth, mBtnHeight));
+        btnAdd->setObjectName(QString("BtnAdd"));
+
+        mButtonGroup->addButton(btnAdd, BTNADD);
+
+        layout->addWidget(btnAdd, 3, 3, Qt::AlignHCenter | Qt::AlignVCenter);
+
+        QPushButton* btnEquals = new QPushButton(QString("="), keypad);
+        btnEquals->setFixedSize(QSize(240, 40));
+        btnEquals->setObjectName(QString("BtnEquals"));
+
+        mButtonGroup->addButton(btnEquals, BTNEQUALS);
+
+        layout->addWidget(btnEquals, 4, 0, 1, 4, Qt::AlignHCenter | Qt::AlignVCenter);
 
         for (int i = 0; i < rows; i++)
         {
@@ -182,7 +227,7 @@ void CalculatorGUI::SetupKeypad()
             {
                 // Create button
                 QPushButton* btn = new QPushButton(QString("%1").arg(num), keypad);
-                btn->setFixedSize(QSize(60, 40));
+                btn->setFixedSize(QSize(mBtnWidth, mBtnHeight));
                 btn->setObjectName(QString("Btn%1").arg(num));
 
                 mButtonGroup->addButton(btn, num);

@@ -49,13 +49,18 @@ protected slots:
     void onMenuActionNew();
 
 private:
-    QGridLayout* mLayout            = nullptr;
-    QGridLayout* mKeypadLayout      = nullptr;
+    QGridLayout*        mLayout         = nullptr;
+    QGridLayout*        mKeypadLayout   = nullptr;
 
-    QMenuBar*     mTabBar           = nullptr;
+    QMenuBar*           mTabBar         = nullptr;
 
-    QButtonGroup* mButtonGroup      = nullptr;
+    QButtonGroup*       mButtonGroup    = nullptr;
 
-    StandardCalculator* mCalculator = nullptr;
+    StandardCalculator* mCalculator     = nullptr;
+
+    int                 mHeight         = 340;
+    int                 mWidth          = 250;
+    int                 mBtnHeight      = 40;
+    int                 mBtnWidth       = 60;
 
 };
