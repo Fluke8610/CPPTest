@@ -31,7 +31,13 @@ public:
     void SetupKeypad();
     void ConnectSignals();
 
+public slots:
+
+    void onKeypadButtonPressed(int id);
+
 protected:
+
+    void ParseCalculation();
 
 signals:
 
@@ -41,13 +47,14 @@ protected slots:
 
     void onMenuActionExit();
     void onMenuActionNew();
-    void onKeypadButtonPressed(int id);
 
 private:
-    QGridLayout* mLayout = nullptr;
-    QGridLayout* mKeypadLayout = nullptr;
+    QGridLayout* mLayout            = nullptr;
+    QGridLayout* mKeypadLayout      = nullptr;
 
-    QMenuBar*     mTabBar = nullptr;
+    QMenuBar*     mTabBar           = nullptr;
+
+    QButtonGroup* mButtonGroup      = nullptr;
 
     StandardCalculator* mCalculator = nullptr;
 
