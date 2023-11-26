@@ -29,13 +29,13 @@ public:
 	* min/max (2.2250738585072014 E - 308, 1.7976931348623158 E + 308)
 	********************************************************************/
 	virtual float Add(const float num1, const float num2) = 0;
-	virtual float Add(const int numAdditions, const vector<int> numbers) = 0;
+	virtual float Add(const vector<int> numbers) = 0;
 	virtual float Subtract(const float num1, const float num2) = 0;
-	virtual float Subtract(const int numSubtractions, const vector<int> numbers) = 0;
+	virtual float Subtract(const vector<int> numbers) = 0;
 	virtual float Divide(const float num1, const float num2) = 0;
-	virtual float Divide(const float numMultiplications, const vector<int> numbers) = 0;
+	virtual float Divide(const vector<int> numbers) = 0;
 	virtual float Multiply(const float num1, const float num2) = 0;
-	virtual float Multiply(const int numMultiplications, const vector<int> numbers) = 0;
+	virtual float Multiply(const vector<int> numbers) = 0;
 
 	virtual string AddInput(const string& input) = 0;
 

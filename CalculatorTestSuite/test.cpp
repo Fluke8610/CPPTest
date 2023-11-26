@@ -3,10 +3,10 @@
 
 using namespace CalculatorClasses;
 using namespace testing;
+using std::tuple;
 
 namespace CalculatorTestSuite
 {
-
 	class StandardCalculatorTesting : public Test
 	{
 
@@ -39,6 +39,11 @@ namespace CalculatorTestSuite
 		EXPECT_EQ(calc->Add(1, 2), 3);
 	}
 
+	TEST_F(StandardCalculatorTesting, AddExpectedEqualMultipleInteger)
+	{
+		EXPECT_EQ(calc->Add(vector<int> { 1, 8, 12, 26, 45, 7, -13 }), 86);
+	}
+
 	TEST_F(StandardCalculatorTesting, SubtractExpectedEqualInteger)
 	{
 		EXPECT_EQ(calc->Subtract(2, 1), 1);
@@ -48,4 +53,29 @@ namespace CalculatorTestSuite
 	{
 		EXPECT_EQ(calc->Divide(10, 2), 5);
 	}
+
+	TEST_F(StandardCalculatorTesting, MultiplyExpectedEqualInteger)
+	{
+		EXPECT_EQ(calc->Multiply(7, 5), 35);
+	}
+
+	TEST_F(StandardCalculatorTesting, MultiplyExpectedEqualMultipleInteger)
+	{
+		EXPECT_EQ(calc->Multiply(vector<int> { 7, 13, 5, 2, 6 }), 5460);
+	}
+
+	/*************************************
+	* TODO: Test Fixtures
+	* 
+	* The aim here was to try and make a more
+	* mature test suite using test fixtures.
+	* 
+	* Due to the nature of the NuGet googletest
+	* plugin it seems it has a bug for parameterised 
+	* testing that makes it unfeasible for usage.
+	* 
+	* Looking at a few sources it seems to be better
+	* supported in other IDE's.
+	**************************************/
+
 };

@@ -17,13 +17,13 @@ namespace CalculatorClasses
 		virtual ~StandardCalculator() override;
 	
 		virtual float Add(const float num1, const float num2) override;
-		virtual float Add(const int numAdditions, const vector<int> numbers) override;
+		virtual float Add(const vector<int> numbers) override;
 		virtual float Subtract(const float num1, const float num2) override;
-		virtual float Subtract(const int numSubtractions, const vector<int> numbers) override;
+		virtual float Subtract(const vector<int> numbers) override;
 		virtual float Divide(const float num1, const float num2) override;
-		virtual float Divide(const float numMultiplications, const vector<int> numbers) override;
+		virtual float Divide(const vector<int> numbers) override;
 		virtual float Multiply(const float num1, const float num2) override;
-		virtual float Multiply(const int numMultiplications, const vector<int> numbers) override;
+		virtual float Multiply(const vector<int> numbers) override;
 
 		virtual string AddInput(const string& input) override;
 
@@ -44,8 +44,9 @@ namespace CalculatorClasses
 	
 	private:
 	
-		string* input = nullptr;
-		float total = 0;
+		string*		input		= nullptr;
+		float		total		= 0;
+		bool		isInError	= false;
 		
 	};
 
