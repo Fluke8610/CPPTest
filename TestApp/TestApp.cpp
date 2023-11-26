@@ -18,8 +18,6 @@ int main()
 
     cout << "Calculating addition of 54.5 and 77.3!\n";
     cout << calc->Add(54.5, 77.3) << endl;
-    cout << *calc->GetEquationDisplay() << endl;
-    cout << *calc->GetCurrentTotalDisplay() << endl;
 
     if (calc != nullptr)
     {

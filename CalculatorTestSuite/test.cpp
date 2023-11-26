@@ -43,4 +43,9 @@ namespace CalculatorTestSuite
 	{
 		EXPECT_EQ(calc->Subtract(2, 1), 1);
 	}
+
+	TEST_F(StandardCalculatorTesting, DivideExpectedEqualInteger)
+	{
+		EXPECT_EQ(calc->Divide(10, 2), 5);
+	}
 };

@@ -8,7 +8,7 @@ using namespace CalculatorClasses;;
 
 StandardCalculator::StandardCalculator()
 {
-	display = new string("");
+	input = new string("");
 }
 
 StandardCalculator::~StandardCalculator()
@@ -20,11 +20,7 @@ float StandardCalculator::Add(float num1, float num2)
 {
 	try
 	{
-		string input = std::to_string(num1) + "+" + std::to_string(num2);
-		ConcatDisplay(input);
-
 		return num1 + num2;
-
 	}
 	catch (const std::exception& e)
 	{
@@ -38,25 +34,65 @@ float StandardCalculator::Add(float num1, float num2)
 
 }
 
+float StandardCalculator::Add(const int numAdditions, const vector<int> numbers)
+{
+	return 0.0f;
+}
+
 float StandardCalculator::Divide(float num1, float num2)
 {
 	return float();
 }
 
-void StandardCalculator::ConcatDisplay(const string& in)
+float StandardCalculator::Divide(const float numMultiplications, const vector<int> numbers)
 {
-	if (display != nullptr)
-	{
-		display->append(in);
-	}
+	return 0.0f;
+}
+
+float StandardCalculator::Multiply(const float num1, const float num2)
+{
+	return 0.0f;
+}
+
+float StandardCalculator::Multiply(const int numMultiplications, const vector<int> numbers)
+{
+	return 0.0f;
+}
+
+string StandardCalculator::AddInput(const string& input)
+{
+	return string();
+}
+
+void StandardCalculator::onAddPressed()
+{
+
+}
+
+void StandardCalculator::onSubtractPressed()
+{
+
+}
+
+void StandardCalculator::onDivisionPressed()
+{
+
+}
+
+void StandardCalculator::onMultiplicationPressed()
+{
+
+}
+
+float StandardCalculator::onEqualsPressed()
+{
+	return 0.0f;
 }
 
 float StandardCalculator::Subtract(float num1, float num2)
 {
 	try 
 	{
-		ConcatDisplay(std::to_string(num1) + "-" + std::to_string(num2));
-
 		return num1 - num2;
 	}
 	catch (const std::exception& e)
@@ -69,9 +105,20 @@ float StandardCalculator::Subtract(float num1, float num2)
 	}
 }
 
+float StandardCalculator::Subtract(const int numSubtractions, const vector<int> numbers)
+{
+	return 0.0f;
+}
+
 void StandardCalculator::Clear()
 {
 	// Todo clear internal vars
+	total = 0;
+	if (input != nullptr)
+	{
+		delete input;
+		input = nullptr;
+	}
 }
 
 bool StandardCalculator::GetInError()
@@ -79,25 +126,8 @@ bool StandardCalculator::GetInError()
 	return false;
 }
 
-string* StandardCalculator::GetCurrentTotalDisplay()
+void StandardCalculator::ParseInput()
 {
-	string* currentTotal = new string(std::to_string(total));
-	return currentTotal;
-}
 
-/*******************************************
-* Return 
-********************************************/
-string* StandardCalculator::GetEquationDisplay()
-{
-	if (display != nullptr)
-	{
-		return display;
-	}
-	else
-	{
-		display = new string("");
-		return display;
-	}
 }
 
