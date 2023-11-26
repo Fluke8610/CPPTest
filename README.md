@@ -1,10 +1,12 @@
 # CPPTest
 This is a test branch to demonstrate gained knowledge in programming practices and ability.
+
 The calculator concept was chosen as this has the ability to provide some Abstraction, Interfaces,
 Unit Tests, Test Drivers and a GUI implementation.
 
 ## CalculatorLibrary
-Uses default ISO Standard C++14
+Uses default ISO Standard C++14.
+
 Contains abstract class calculator, derived interface Standard calculator.
 
 ### Future tasks
@@ -15,6 +17,7 @@ Contains abstract class calculator, derived interface Standard calculator.
 
 ## CalculatorTestSuite
 Uses default ISO Standard C++14.
+
 Uses Google Test classes for unit testing.
 
 ### Future Tasks
@@ -26,6 +29,7 @@ Uses Google Test classes for unit testing.
 
 ## TestApp
 Uses default ISO Standard C++14.
+
 Defines a main.cpp for console based testing.
 
 ### Future Tasks
@@ -34,6 +38,7 @@ Defines a main.cpp for console based testing.
 
 ## CalculatorGUI
 Uses default ISO Standard C++14.
+
 Uses QT Widgets Version 6.3.0.
 
 ### Future Tasks
