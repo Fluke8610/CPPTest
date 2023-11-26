@@ -8,7 +8,7 @@ using namespace CalculatorClasses;;
 
 StandardCalculator::StandardCalculator()
 {
-	input = new string("");
+	mInput = new string("");
 }
 
 StandardCalculator::~StandardCalculator()
@@ -39,17 +39,17 @@ float StandardCalculator::Add(const vector<int> numbers)
 	
 	for (int num : numbers)
 	{
-		if (total == 0)
+		if (mTotal == 0)
 		{
-			total = num;
+			mTotal = num;
 		}
 		else
 		{
-			total += num;
+			mTotal += num;
 		}
 	}
 
-	return total;
+	return mTotal;
 }
 
 float StandardCalculator::Divide(float num1, float num2)
@@ -69,7 +69,19 @@ float StandardCalculator::Divide(float num1, float num2)
 
 float StandardCalculator::Divide(const vector<int> numbers)
 {
-	return 0.0f;
+	for (int num : numbers)
+	{
+		if (mTotal == 0)
+		{
+			mTotal = num;
+		}
+		else
+		{
+			mTotal /= num;
+		}
+	}
+
+	return mTotal;
 }
 
 float StandardCalculator::Multiply(const float num1, const float num2)
@@ -82,47 +94,49 @@ float StandardCalculator::Multiply(const vector<int> numbers)
 
 	for(int num : numbers)
 	{
-		if (total == 0)
+		if (mTotal == 0)
 		{
-			total = num;
+			mTotal = num;
 		}
 		else
 		{
-			total = total * num;
+			mTotal = mTotal * num;
 		}
 	}
 
-	return total;
+	return mTotal;
 }
 
 string StandardCalculator::AddInput(const string& input)
 {
-	return string();
+	return "";
 }
 
 void StandardCalculator::onAddPressed()
 {
-
+	mInput->append("+");
 }
 
 void StandardCalculator::onSubtractPressed()
 {
-
+	mInput->append("-");
 }
 
 void StandardCalculator::onDivisionPressed()
 {
-
+	mInput->append("/");
 }
 
 void StandardCalculator::onMultiplicationPressed()
 {
-
+	mInput->append("*");
 }
 
 float StandardCalculator::onEqualsPressed()
 {
-	return 0.0f;
+	ParseInput();
+
+	return mTotal;
 }
 
 float StandardCalculator::Subtract(float num1, float num2)
@@ -143,17 +157,29 @@ float StandardCalculator::Subtract(float num1, float num2)
 
 float StandardCalculator::Subtract(const vector<int> numbers)
 {
-	return 0.0f;
+	for (int num : numbers)
+	{
+		if (mTotal == 0)
+		{
+			mTotal = num;
+		}
+		else
+		{
+			mTotal -= num;
+		}
+	}
+
+	return mTotal;
 }
 
 void StandardCalculator::Clear()
 {
 	// Todo clear internal vars
-	total = 0;
-	if (input != nullptr)
+	mTotal = 0;
+	if (mInput != nullptr)
 	{
-		delete input;
-		input = nullptr;
+		delete mInput;
+		mInput = nullptr;
 	}
 }
 
@@ -164,6 +190,9 @@ bool StandardCalculator::GetInError()
 
 void StandardCalculator::ParseInput()
 {
+	// TODO: REGEX for +*-/
+
+
 
 }
 

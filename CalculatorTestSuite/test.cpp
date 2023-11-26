@@ -59,6 +59,11 @@ namespace CalculatorTestSuite
 		EXPECT_EQ(calc->Divide(10, 2), 5);
 	}
 
+	TEST_F(StandardCalculatorTesting, DivideExpectedEqualMultipleInteger)
+	{
+		EXPECT_NEAR(calc->Divide(vector<int> { 500, 2, 6, 3 }), 13.88, 0.01);
+	}
+
 	TEST_F(StandardCalculatorTesting, MultiplyExpectedEqualInteger)
 	{
 		EXPECT_EQ(calc->Multiply(7, 5), 35);
@@ -73,7 +78,9 @@ namespace CalculatorTestSuite
 	* TODO: Test Fixtures
 	* 
 	* The aim here was to try and make a more
-	* mature test suite using test fixtures.
+	* mature test suite using parameterised 
+	* test fixtures as well as standard test
+	* fixtures.
 	* 
 	* Due to the nature of the NuGet googletest
 	* plugin it seems it has a bug for parameterised 

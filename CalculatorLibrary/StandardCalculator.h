@@ -44,9 +44,9 @@ namespace CalculatorClasses
 	
 	private:
 	
-		string*		input		= nullptr;
-		float		total		= 0;
-		bool		isInError	= false;
+		string*		mInput		= nullptr;
+		float		mTotal		= 0;
+		bool		mIsInError	= false;
 		
 	};
 
