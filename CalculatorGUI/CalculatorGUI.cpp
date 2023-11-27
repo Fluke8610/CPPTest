@@ -13,14 +13,19 @@
 #include <QLabel>
 #include <QButtonGroup>
 
-#define BTNADD          0
-#define BTNSUBTRACT     -1
-#define BTNDIVIDE       -2
-#define BTNMULTIPLY     -3
-#define BTNEQUALS       -4
-#define BTNDECIMALPOINT -5
-#define BTNDELETE       -6
-#define BTNZERO         -7
+/*******************************
+* Define button group id's for 
+* push buttons.
+********************************/
+#define BTNADD          -2
+#define BTNSUBTRACT     -3
+#define BTNDIVIDE       -4
+#define BTNMULTIPLY     -5
+#define BTNEQUALS       -6
+#define BTNDECIMALPOINT -7
+#define BTNDELETE       -8
+#define BTNZERO         -9
+#define BTNCLEAR        -10
 
 CalculatorGUI::CalculatorGUI(QWidget *parent)
     : QMainWindow(parent)
@@ -79,7 +84,7 @@ void CalculatorGUI::BuildView()
 
     QLabel* mainInputDisplay = new QLabel(QString(""), mainWidget);
     mainInputDisplay->setMinimumWidth(240);
-    mainInputDisplay->setMinimumHeight(60);
+    mainInputDisplay->setMinimumHeight(30);
     mainInputDisplay->setWordWrap(true);
     mainInputDisplay->setAlignment(Qt::AlignVCenter | Qt::AlignRight);
     mainInputDisplay->setStyleSheet("QLabel { background-color: white; color: black; border-radius: 5px; }");
@@ -156,13 +161,21 @@ void CalculatorGUI::SetupKeypad()
 
     if (keypad != nullptr && layout != nullptr)
     {
+        QPushButton* btnClear = new QPushButton(QString("C"), keypad);
+        btnClear->setFixedSize(QSize(60, 40));
+        btnClear->setObjectName(QString("BtnDecimalPoint"));
+
+        mButtonGroup->addButton(btnClear, BTNCLEAR);
+
+        layout->addWidget(btnClear, 0, 3, Qt::AlignHCenter | Qt::AlignVCenter);
+
         QPushButton* btnDecimalPoint = new QPushButton(QString("."), keypad);
         btnDecimalPoint->setFixedSize(QSize(60, 40));
         btnDecimalPoint->setObjectName(QString("BtnDecimalPoint"));
 
         mButtonGroup->addButton(btnDecimalPoint, BTNDECIMALPOINT);
 
-        layout->addWidget(btnDecimalPoint, 3, 0, Qt::AlignHCenter | Qt::AlignVCenter);
+        layout->addWidget(btnDecimalPoint, 4, 0, Qt::AlignHCenter | Qt::AlignVCenter);
 
         QPushButton* btnZero = new QPushButton(QString("0"), keypad);
         btnZero->setFixedSize(QSize(mBtnWidth, mBtnHeight));
@@ -170,7 +183,7 @@ void CalculatorGUI::SetupKeypad()
 
         mButtonGroup->addButton(btnZero, BTNZERO);
 
-        layout->addWidget(btnZero, 3, 1, Qt::AlignHCenter | Qt::AlignVCenter);
+        layout->addWidget(btnZero, 4, 1, Qt::AlignHCenter | Qt::AlignVCenter);
 
         QPushButton* btnDelete = new QPushButton(QString("DEL"), keypad);
         btnDelete->setFixedSize(QSize(mBtnWidth, mBtnHeight));
@@ -178,7 +191,7 @@ void CalculatorGUI::SetupKeypad()
 
         mButtonGroup->addButton(btnDelete, BTNDELETE);
 
-        layout->addWidget(btnDelete, 3, 2, Qt::AlignHCenter | Qt::AlignVCenter);
+        layout->addWidget(btnDelete, 4, 2, Qt::AlignHCenter | Qt::AlignVCenter);
 
         QPushButton* btnSubtract = new QPushButton(QString("-"), keypad);
         btnSubtract->setFixedSize(QSize(mBtnWidth, mBtnHeight));
@@ -186,7 +199,7 @@ void CalculatorGUI::SetupKeypad()
 
         mButtonGroup->addButton(btnSubtract, BTNSUBTRACT);
 
-        layout->addWidget(btnSubtract, 0, 3, Qt::AlignHCenter | Qt::AlignVCenter);
+        layout->addWidget(btnSubtract, 1, 3, Qt::AlignHCenter | Qt::AlignVCenter);
 
         QPushButton* btnDivide = new QPushButton(QString("/"), keypad);
         btnDivide->setFixedSize(QSize(mBtnWidth, mBtnHeight));
@@ -194,7 +207,7 @@ void CalculatorGUI::SetupKeypad()
 
         mButtonGroup->addButton(btnDivide, BTNDIVIDE);
 
-        layout->addWidget(btnDivide, 1, 3, Qt::AlignHCenter | Qt::AlignVCenter);
+        layout->addWidget(btnDivide, 2, 3, Qt::AlignHCenter | Qt::AlignVCenter);
 
         QPushButton* btnMultiply = new QPushButton(QString("*"), keypad);
         btnMultiply->setFixedSize(QSize(mBtnWidth, mBtnHeight));
@@ -202,7 +215,7 @@ void CalculatorGUI::SetupKeypad()
 
         mButtonGroup->addButton(btnMultiply, BTNMULTIPLY);
 
-        layout->addWidget(btnMultiply, 2, 3, Qt::AlignHCenter | Qt::AlignVCenter);
+        layout->addWidget(btnMultiply, 3, 3, Qt::AlignHCenter | Qt::AlignVCenter);
 
         QPushButton* btnAdd = new QPushButton(QString("+"), keypad);
         btnAdd->setFixedSize(QSize(mBtnWidth, mBtnHeight));
@@ -210,7 +223,7 @@ void CalculatorGUI::SetupKeypad()
 
         mButtonGroup->addButton(btnAdd, BTNADD);
 
-        layout->addWidget(btnAdd, 3, 3, Qt::AlignHCenter | Qt::AlignVCenter);
+        layout->addWidget(btnAdd, 4, 3, Qt::AlignHCenter | Qt::AlignVCenter);
 
         QPushButton* btnEquals = new QPushButton(QString("="), keypad);
         btnEquals->setFixedSize(QSize(240, 40));
@@ -218,11 +231,10 @@ void CalculatorGUI::SetupKeypad()
 
         mButtonGroup->addButton(btnEquals, BTNEQUALS);
 
-        layout->addWidget(btnEquals, 4, 0, 1, 4, Qt::AlignHCenter | Qt::AlignVCenter);
+        layout->addWidget(btnEquals, 5, 0, 1, 4, Qt::AlignHCenter | Qt::AlignVCenter);
 
         for (int i = 0; i < rows; i++)
         {
-
             for (int j = 0; j < cols; j++)
             {
                 // Create button
@@ -233,7 +245,7 @@ void CalculatorGUI::SetupKeypad()
                 mButtonGroup->addButton(btn, num);
 
                 // Add to layout
-                layout->addWidget(btn, i, j, Qt::AlignHCenter | Qt::AlignVCenter);
+                layout->addWidget(btn, i +1, j, Qt::AlignHCenter | Qt::AlignVCenter);
 
                 num++;
             }
@@ -242,16 +254,6 @@ void CalculatorGUI::SetupKeypad()
 
         connect(mButtonGroup, &QButtonGroup::idClicked, this, &CalculatorGUI::onKeypadButtonPressed);
     }
-}
-
-void CalculatorGUI::ConnectSignals()
-{
-
-}
-
-void CalculatorGUI::ParseCalculation()
-{
-    // TODO: Parse 
 }
 
 void CalculatorGUI::onMenuActionNew()
@@ -265,6 +267,12 @@ void CalculatorGUI::onMenuActionNew()
         {
             lbl->setText(QString("0"));
         }
+
+        QLabel* lblDisplay = findChild<QLabel*>(QString("mainInputDisplayLabel"));
+        if (lblDisplay != nullptr)
+        {
+            lblDisplay->setText(QString(""));
+        }
     }
     else
     {
@@ -277,7 +285,8 @@ void CalculatorGUI::onMenuActionNew()
 void CalculatorGUI::onKeypadButtonPressed(int id)
 {
     QLabel* lbl = findChild<QLabel*>(QString("MainTextDisplayLabel"));
-    if (lbl == nullptr)
+    QLabel* lblDisplay = findChild<QLabel*>(QString("mainInputDisplayLabel"));
+    if (lbl == nullptr || lblDisplay == nullptr)
     {
         // TODO: Create error dialog
         return;
@@ -285,37 +294,62 @@ void CalculatorGUI::onKeypadButtonPressed(int id)
 
     // Get current text in label
     QString text = lbl->text();
+    QString dispText = lblDisplay->text();
 
     switch (id)
     {
+    case BTNCLEAR:
+        mCalculator->Clear();
+        dispText = "";
+        text = "0";
+        break;
+    case BTNADD:
+        mCalculator->AddInput(text.toStdString());
+        mCalculator->onAddPressed();
+        dispText.append("+");
+        text = "0";
+        break;
     case BTNSUBTRACT:
-        
+        mCalculator->AddInput(text.toStdString());
+        mCalculator->onSubtractPressed();
+        dispText.append("-");
+        text = "0";
         break;
     case BTNDIVIDE:
-
+        mCalculator->AddInput(text.toStdString());
+        mCalculator->onDivisionPressed();
+        dispText.append("/");
+        text = "0";
         break;
     case BTNMULTIPLY:
-
+        mCalculator->AddInput(text.toStdString());
+        mCalculator->onMultiplicationPressed();
+        dispText.append("*");
+        text = "0";
         break;
     case BTNEQUALS:
-
+        mCalculator->AddInput(text.toStdString());
+        text = QString("%1").arg(mCalculator->onEqualsPressed());
+        mCalculator->Clear();
         break;
     case BTNDECIMALPOINT:
         if (text.startsWith('0'))
         {
             // clear text, assume we have initial 0
-            text = "0.0";
+            text = "0";
         }
         else
         {
             if (!text.contains('.'))
             {
                 text.append('.');
+                dispText.append('.');
             }
         }
         break;
     case BTNDELETE:
         // clear text
+        dispText.remove(text);
         text = "0";
         break;
     case BTNZERO:
@@ -329,98 +363,116 @@ void CalculatorGUI::onKeypadButtonPressed(int id)
         {
             // clear text, assume we have initial 0
             text = "1";
+            dispText.append("1");
         }
         else
         {
             text.append('1');
+            dispText.append('1');
         }
         break;
     case 2:
         if (text.startsWith('0'))
         {
             // clear text, assume we have initial 0
-            text = "2";
+            text = '2';
+            dispText.append('2');
         }
         else
         {
             text.append('2');
+            dispText.append('2');
         }
         break;
     case 3:
         if (text.startsWith('0'))
         {
             // clear text, assume we have initial 0
-            text = "3";
+            text = '3';
+            dispText.append('3');
         }
         else
         {
             text.append('3');
+            dispText.append('3');
         }
         break;
     case 4:
         if (text.startsWith('0'))
         {
             // clear text, assume we have initial 0
-            text = "4";
+            text = '4';
+            dispText.append('4');
         }
         else
         {
             text.append('4');
+            dispText.append('4');
         }
         break;
     case 5:
         if (text.startsWith('0'))
         {
             // clear text, assume we have initial 0
-            text = "5";
+            text = '5';
+            dispText.append('5');
         }
         else
         {
             text.append('5');
+            dispText.append('5');
         }
         break;
     case 6:
         if (text.startsWith('0'))
         {
             // clear text, assume we have initial 0
-            text = "6";
+            text = '6';
+            dispText.append('6');
         }
         else
         {
             text.append('6');
+            dispText.append('6');
         }
         break;
     case 7:
         if (text.startsWith('0'))
         {
             // clear text, assume we have initial 0
-            text = "7";
+            text = '7';
+            dispText.append('7');
         }
         else
         {
             text.append('7');
+            dispText.append('7');
         }
         break;
     case 8:
         if (text.startsWith('0'))
         {
             // clear text, assume we have initial 0
-            text = "8";
+            text = '8';
+            dispText.append('8');
         }
         else
         {
             text.append('8');
+            dispText.append('8');
         }
         break;
     case 9:
         if (text.startsWith('0'))
         {
             // clear text, assume we have initial 0
-            text = "9";
+            text = '9';
+            dispText.append('9');
         }
         else
         {
             text.append('9');
+            dispText.append('9');
         }
         break;
     default:
@@ -429,6 +481,7 @@ void CalculatorGUI::onKeypadButtonPressed(int id)
     }
 
     lbl->setText(text);
+    lblDisplay->setText(dispText);
 }
 
 void CalculatorGUI::onMenuActionExit()

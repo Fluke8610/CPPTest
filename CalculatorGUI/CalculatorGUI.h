@@ -29,15 +29,12 @@ public:
     void BuildView();
     void CreateMenu();
     void SetupKeypad();
-    void ConnectSignals();
 
 public slots:
 
     void onKeypadButtonPressed(int id);
 
 protected:
-
-    void ParseCalculation();
 
 signals:
 
