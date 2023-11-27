@@ -37,7 +37,7 @@ public:
 	virtual float Multiply(const float num1, const float num2) = 0;
 	virtual float Multiply(const vector<int> numbers) = 0;
 
-	virtual string AddInput(const string& input) = 0;
+	virtual const string* AddInput(const string& input) = 0;
 
 	virtual void onAddPressed() = 0;
 	virtual void onSubtractPressed() = 0;

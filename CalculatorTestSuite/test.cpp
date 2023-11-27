@@ -18,11 +18,17 @@ namespace CalculatorTestSuite
 
 		virtual ~StandardCalculatorTesting() { }
 
+		/*******************************************
+		* Setup the test environment.
+		********************************************/
 		virtual void SetUp()
 		{
 			calc = new StandardCalculator();
 		}
 
+		/*******************************************
+		* Cleanup test environment.
+		********************************************/
 		virtual void TearDown()
 		{
 			if (calc != nullptr)
@@ -72,6 +78,12 @@ namespace CalculatorTestSuite
 	TEST_F(StandardCalculatorTesting, MultiplyExpectedEqualMultipleInteger)
 	{
 		EXPECT_EQ(calc->Multiply(vector<int> { 7, 13, 5, 2, 6 }), 5460);
+	}
+
+	TEST_F(StandardCalculatorTesting, ParseInputExpectedValueFromCalculator)
+	{
+		calc->AddInput("324 + 400 - 600 * 2 / 3");
+		EXPECT_NEAR(calc->onEqualsPressed(), 82.66, 0.01);
 	}
 
 	/*************************************

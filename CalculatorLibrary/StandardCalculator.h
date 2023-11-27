@@ -25,7 +25,7 @@ namespace CalculatorClasses
 		virtual float Multiply(const float num1, const float num2) override;
 		virtual float Multiply(const vector<int> numbers) override;
 
-		virtual string AddInput(const string& input) override;
+		virtual const string* AddInput(const string& input) override;
 
 		virtual void onAddPressed() override;
 		virtual void onSubtractPressed() override;

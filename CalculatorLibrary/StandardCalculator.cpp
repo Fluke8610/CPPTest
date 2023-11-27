@@ -3,8 +3,11 @@
 #include <exception>
 #include <iostream>
 #include <memory>
+#include <sstream>
 
-using namespace CalculatorClasses;;
+using namespace CalculatorClasses;
+using std::stringstream;
+using std::getline;
 
 StandardCalculator::StandardCalculator()
 {
@@ -107,29 +110,38 @@ float StandardCalculator::Multiply(const vector<int> numbers)
 	return mTotal;
 }
 
-string StandardCalculator::AddInput(const string& input)
+const string* StandardCalculator::AddInput(const string& input)
 {
-	return "";
+	if (mInput == nullptr)
+	{
+		mInput = new string(input);
+	}
+	else
+	{
+		mInput->append(input);
+	}
+
+	return mInput;
 }
 
 void StandardCalculator::onAddPressed()
 {
-	mInput->append("+");
+	mInput->append(" + ");
 }
 
 void StandardCalculator::onSubtractPressed()
 {
-	mInput->append("-");
+	mInput->append(" - ");
 }
 
 void StandardCalculator::onDivisionPressed()
 {
-	mInput->append("/");
+	mInput->append(" / ");
 }
 
 void StandardCalculator::onMultiplicationPressed()
 {
-	mInput->append("*");
+	mInput->append(" * ");
 }
 
 float StandardCalculator::onEqualsPressed()
@@ -176,11 +188,14 @@ void StandardCalculator::Clear()
 {
 	// Todo clear internal vars
 	mTotal = 0;
+
 	if (mInput != nullptr)
 	{
 		delete mInput;
 		mInput = nullptr;
 	}
+
+
 }
 
 bool StandardCalculator::GetInError()
@@ -190,9 +205,103 @@ bool StandardCalculator::GetInError()
 
 void StandardCalculator::ParseInput()
 {
-	// TODO: REGEX for +*-/
+	if (mInput->empty() == true)
+	{
+		return;
+	}
 
+	vector<string> tokens;
+	string substr;
+	
+	string copyString = *mInput;
+	stringstream stream(copyString);
 
+	while (getline(stream, substr, ' '))
+	{
+		tokens.push_back(substr);
+	}
 
+	float previousValue = 0.0f;
+	float value = 0.0f;
+	bool previousTokenPlus = false;
+	bool previousTokenMinus = false;
+	bool previousTokenDivde = false;
+	bool previousTokenTimes = false;
+
+	for (string token : tokens)
+	{
+		if (token == "+")
+		{
+			previousTokenPlus = true;
+		}
+		else if (token == "-")
+		{
+			previousTokenMinus = true;
+		}
+		else if (token == "*")
+		{
+			previousTokenTimes = true;
+		}
+		else if (token == "/")
+		{
+			previousTokenDivde = true;
+		}
+		else
+		{
+			size_t found = token.find('.');
+			if (found == string::npos)
+			{
+				try
+				{
+					value = stoi(token);
+				}
+				catch (const std::exception&)
+				{
+					// TODO: raise error flag
+				}
+			}
+			else
+			{
+				try
+				{
+					value = stof(token);
+				}
+				catch (const std::exception&)
+				{
+					// TODO: raise error flag
+				}
+			}
+
+			if (previousTokenPlus)
+			{
+				mTotal += value;
+				previousTokenPlus = false;
+			}
+			else if (previousTokenMinus)
+			{
+				mTotal -= value;
+				previousTokenMinus = false;
+			}
+			else if (previousTokenDivde)
+			{
+				mTotal /= value;
+				previousTokenDivde = false;
+			}
+			else if (previousTokenTimes)
+			{
+				mTotal *= value;
+				previousTokenTimes = false;
+			}
+			else
+			{
+				previousTokenPlus = false;
+				previousTokenMinus = false;
+				previousTokenDivde = false;
+				previousTokenTimes = false;
+
+				mTotal = value;
+			}
+		}
+	}
 }
 

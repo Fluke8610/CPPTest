@@ -19,6 +19,11 @@ int main()
     cout << "Calculating addition of 54.5 and 77.3!\n";
     cout << calc->Add(54.5, 77.3) << endl;
 
+    calc->AddInput("324 + 400 - 600 * 2 / 3");
+    float val = calc->onEqualsPressed();
+
+    cout << val << endl;
+
     if (calc != nullptr)
     {
         delete calc;
