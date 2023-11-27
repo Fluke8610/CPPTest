@@ -34,7 +34,7 @@ Defines a main.cpp for console based testing.
 
 ## CalculatorGUI
 Uses default ISO Standard C++14.  
-Uses QT Widgets Version 6.3.0.
+Uses QT Widgets Version 6.4.2.
 
 ### Future Tasks
 
