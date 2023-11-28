@@ -9,26 +9,48 @@ I have worked in multiple industries such as:
 
 ### This Repository
 I have created this repository to showcase my skills and understanding of some programming concepts
-that I have used in my day to day work and to try and build up a small portfolio.  
-This is a test branch to demonstrate gained knowledge in programming practices and ability.  
-The calculator concept was chosen as this has the ability to provide some Abstraction, Interfaces,
-Unit Tests, Test Drivers and a GUI implementation.  
+to try and build up a small portfolio.  
+This is a test branch to demonstrate gained knowledge and ability.  
+The calculator concept was chosen as a project to provide some Abstraction, Unit Tests, Test Drivers 
+and a GUI implementation.  
+The repository contains 4 projects as part of the solution named CPPTest, these projects are split into
+the Class Library, The Unit Test suite, A console based Test driver and a GUI.
+### Index
 
-### Environment and Tools
+- <b>CPPTest</b>
+  - <b>CalculatorLibrary</b>
+    - <b>Project</b>
+    - <b>Files</b>
+    - <b>Future Tasks</b>
+  - <b>CalculatorTestSuite</b>
+    - <b>Project</b>
+    - <b>Current State</b>
+    - <b>Files</b>
+    - <b>Future Tasks</b>
+  - <b>TestApp</b>
+    - <b>Project</b>
+    - <b>Files</b>
+    - <b>Future Tasks</b>
+  - <b>CalculatorGUI</b>
+    - <b>Project</b>
+    - <b>Files</b>
+    - <b>Future Tasks</b>
+
+# CPPTest
+##### Solution Folder
+This folder contains 4 projects, the sub headings below describe the individual projects themselves.  
+The intention of this is to keep all project files in one place allowing for easier setup of the build environment.
+
+##### Environment and Tools
 
 > [!NOTE]  
-> The following headings comprise an index of the project, this project was created using <b>Visual Studio
+> This project was created using <b>Visual Studio
 > 2022 Community Edition</b> and the <b>QT VS Tools Extension</b> with the Windows platform as the intended target.  
 > To be able to build the solution you will need a QT build, I have downloaded 6.4.2 and you will need to
 > install Desktop development with C++ in the Visual Studio installer if you are using Visual Studio.  
 
 > [!IMPORTANT]
 > The project currently does not have any CMake or Makefile associated with it to allow for building in VS Code.
-
-# CPPTest
-##### Solution Folder
-This folder contains 4 projects, the sub headings below describe the individual projects themselves.  
-The intention of this is to keep all project files in one place allowing for easier setup of the build environment.
 
 ## CalculatorLibrary
 ##### Project
@@ -100,10 +122,11 @@ This project provides a user interface for the class library.
 It uses the QT Widgets framework to render the UI and uses the Calculator library to calculate values input.
 
 ##### Files
-- CalculatorGUI
+- <b>CalculatorGUI</b>
   - <b>CalculatorGUI.cpp</b>
   - <b>CalculatorGUI.h</b>
-- <b>main.cpp</b>  
+- <b>Main</b>
+  - <b>main.cpp</b>  
 
 ##### Future Tasks
 I plan to improve this project incrementally, additional tweaks of the user interface will be added to this.  
