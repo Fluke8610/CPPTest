@@ -91,7 +91,7 @@ This project is a standard C++ console used for testing the CalculatorLibrary in
 Contains:
 - <b>TestApp.cpp</b>
 
-### Future Tasks
+##### Future Tasks
 As the StandardCalculator library functions are improved, this will be used to test creation of instances
 of the calculators, perform some basic testing of the calculator such as processing a series of inputs.
 - Implement further test functionality of the CalculatorLibrary Classes.
