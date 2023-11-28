@@ -15,26 +15,6 @@ The calculator concept was chosen as a project to provide some Abstraction, Unit
 and a GUI implementation.  
 The repository contains 4 projects as part of the solution named CPPTest, these projects are split into
 the Class Library, The Unit Test suite, A console based Test driver and a GUI.
-### Index
-
-- <b>CPPTest</b>
-  - <b>CalculatorLibrary</b>
-    - <b>Project</b>
-    - <b>Files</b>
-    - <b>Future Tasks</b>
-  - <b>CalculatorTestSuite</b>
-    - <b>Project</b>
-    - <b>Current State</b>
-    - <b>Files</b>
-    - <b>Future Tasks</b>
-  - <b>TestApp</b>
-    - <b>Project</b>
-    - <b>Files</b>
-    - <b>Future Tasks</b>
-  - <b>CalculatorGUI</b>
-    - <b>Project</b>
-    - <b>Files</b>
-    - <b>Future Tasks</b>
 
 # CPPTest
 ##### Solution Folder
